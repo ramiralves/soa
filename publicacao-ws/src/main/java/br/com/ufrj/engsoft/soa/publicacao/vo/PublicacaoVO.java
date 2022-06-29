@@ -41,8 +41,8 @@ public class PublicacaoVO implements Serializable{
     
 	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinTable(name="autor_publicacao",
-	             joinColumns={@JoinColumn(name="autor_id")},
-	             inverseJoinColumns={@JoinColumn(name="publicao_id")})
+	             joinColumns={@JoinColumn(name="publicao_id")},
+	             inverseJoinColumns={@JoinColumn(name="autor_id")})
 	private List<AutorVO> autores = new ArrayList<AutorVO>();
 
 	public int getId() {
