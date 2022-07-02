@@ -21,14 +21,6 @@ public class AutorVO implements Serializable{
 	private int id; 
 	private String cpf; 
 	private String nome;	
-	
-	/*
-	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-	@JoinTable(name="autor_publicacao",
-	             joinColumns={@JoinColumn(name="autor_id")},
-	             inverseJoinColumns={@JoinColumn(name="publicao_id")})
-	private List<PublicacaoVO> publicacoes = new ArrayList<PublicacaoVO>();
-	*/
 
 	public int getId() {
 		return id;

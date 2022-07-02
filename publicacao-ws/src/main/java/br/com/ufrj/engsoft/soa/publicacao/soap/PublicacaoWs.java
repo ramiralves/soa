@@ -27,7 +27,7 @@ public class PublicacaoWs {
     public @WebResult(name = "publicacoes") PublicacaoResponse obterPublicacoesContemTitulo(@WebParam(name = "titulo") String titulo)throws ParametroException {
 		
 		if(StringUtils.isEmpty(titulo)) {
-			throw new ParametroException("Valor do Titulo Inválido!");
+			throw new ParametroException("Valor do Titulo da Publicação Inválido!");
 		}
 
 		PublicacaoResponse response = new PublicacaoResponse();
