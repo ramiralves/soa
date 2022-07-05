@@ -9,8 +9,6 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class PublicacaoRequest {
 
-    //@XmlElement(name = "autor", required = true)
-    //private AutorVO autorVO;
 	@XmlElement(name = "autor", required = true)
 	private String titulo;
 

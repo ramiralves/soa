@@ -15,7 +15,16 @@ import javax.xml.bind.annotation.XmlType;
 public class AutorVO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
+	
+	public AutorVO() {
 		
+	}
+		
+	public AutorVO(String nome) {
+		super();
+		this.nome = nome;
+	}
+	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)	
 	private int id; 
