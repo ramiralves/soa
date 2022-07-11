@@ -38,8 +38,7 @@ public class Autor {
   @Column(unique = true, nullable = false)
   private Date data_nascimento;
 
-  @OneToOne(mappedBy = "autor", cascade = CascadeType.ALL,
-          fetch = FetchType.LAZY, optional = false)
+  @OneToOne(mappedBy = "autor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   private Endereco endereco;
 
 public Integer getId() {

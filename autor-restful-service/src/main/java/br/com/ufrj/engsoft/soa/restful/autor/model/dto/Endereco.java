@@ -24,20 +24,17 @@ public class Endereco {
 	private int 	numero;
 	private String 	complemento;
 	
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "autor_id")
+    @OneToOne(fetch = FetchType.EAGER )
+    @JoinColumn(name = "autor_id", insertable = true)
     private Autor autor;
     
-    @OneToOne(mappedBy = "endereco", cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY, optional = false)
+    @OneToOne(mappedBy = "endereco", cascade = {CascadeType.PERSIST}, fetch = FetchType.EAGER , optional = false)
     private Pais pais;
 
-    @OneToOne(mappedBy = "endereco", cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY, optional = false)    
+    @OneToOne(mappedBy = "endereco", cascade = CascadeType.ALL, fetch = FetchType.EAGER , optional = false)    
     private Cidade cidade;
     
-    @OneToOne(mappedBy = "endereco", cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY, optional = false)    
+    @OneToOne(mappedBy = "endereco", cascade = CascadeType.ALL, fetch = FetchType.EAGER , optional = false)    
     private Estado estado;
 
 	public Long getId() {
@@ -86,6 +83,30 @@ public class Endereco {
 
 	public void setAutor(Autor autor) {
 		this.autor = autor;
+	}
+
+	public Pais getPais() {
+		return pais;
+	}
+
+	public void setPais(Pais pais) {
+		this.pais = pais;
+	}
+
+	public Cidade getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
+	}
+
+	public Estado getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
 	}	
 	
 

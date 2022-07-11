@@ -61,11 +61,11 @@ public class UserService {
    }  
 
   public Autor search(String username) {
-	   Autor autor = autorRepository.findByUsername(username);
-    if (autor == null) {
-      throw new CustomException("The user doesn't exist", HttpStatus.NOT_FOUND);
-    }
-    return autor;
+	  Autor autor = autorRepository.findByNome(username);
+	  if (autor == null) {
+		  throw new CustomException("The user doesn't exist", HttpStatus.NOT_FOUND);
+	  }
+	  return autor;
   }
 
   public AppUser whoami(HttpServletRequest req) {
