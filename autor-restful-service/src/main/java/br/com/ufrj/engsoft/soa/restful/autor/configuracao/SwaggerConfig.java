@@ -47,7 +47,7 @@ public class SwaggerConfig {
   private ApiInfo metadata() {
     return new ApiInfoBuilder()//
         .title("API RestFul + Swagger + JWT.")//
-        .description("Este é um serviço restful com autorização via JWT. Para maiores informações favor acessar o endereço: [https://jwt.io/](https://jwt.io/). \r\n"
+        .description("Este é um serviço restful com autorização via JWT. \nPara maiores informações favor acessar o endereço: [https://jwt.io/](https://jwt.io/). \r\n"
         		+ "No exemplo deste projeto, você pode se autenticar utilizando usuário/senha: admin.\r\n"
         		+ "Após autenticaco com sucesso o sistema retorna o token, com ele você pode efetuar a consulta pelo nome do autor.")//
         .version("1.0.0")//

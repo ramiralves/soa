@@ -34,26 +34,26 @@ public class UserController {
   private ModelMapper modelMapper;
 
   @PostMapping("/signin")
-  @ApiOperation(value = "${UserController.signin}")
+  @ApiOperation(value = "${usercontroller.signin}")
   @ApiResponses(value = {//
-      @ApiResponse(code = 400, message = "Ocorreu algum erro no sistema."), //
-      @ApiResponse(code = 422, message = "Usuário e/ou Senha informados estão inválidos.")})
+      @ApiResponse(code = 400, message = "{usercontroller.erro400}"), //
+      @ApiResponse(code = 422, message = "{usercontroller.erro404}")})
   public String login(//
-      @ApiParam("Username") @RequestParam String username, //
-      @ApiParam("Password") @RequestParam String password) {
+      @ApiParam("${usercontroller.username}") @RequestParam String username, //
+      @ApiParam("${usercontroller.password}") @RequestParam String password) {
     return userService.signin(username, password);
   }
   
   @GetMapping(value = "/{username}")
   @PreAuthorize("hasRole('ROLE_ADMIN')")
-  @ApiOperation(value = "${UserController.search}", response = Autor.class, authorizations = { @Authorization(value="apiKey") })
+  @ApiOperation(value = "${usercontroller.search}", response = Autor.class, authorizations = { @Authorization(value="apiKey") })
   @ApiResponses(value = {//
-	  @ApiResponse(code = 400, message = "Ocorreu algum erro no sistema."), //
-	  @ApiResponse(code = 403, message = "Acesso Negado!"), //
-	  @ApiResponse(code = 404, message = "O usuário inválido."), //
-	  @ApiResponse(code = 500, message = "JWT token expirado ou inválido.")}
+	  @ApiResponse(code = 400, message = "{usercontroller.erro400}"), //
+	  @ApiResponse(code = 403, message = "{usercontroller.erro403}"), //
+	  @ApiResponse(code = 404, message = "{usercontroller.erro404}"), //
+	  @ApiResponse(code = 500, message = "{usercontroller.erro500}")}
   )  
-  public ResponseEntity<Autor> search(@ApiParam("Username") @PathVariable String username) {
+  public ResponseEntity<Autor> search(@ApiParam("${usercontroller.username}") @PathVariable String username) {
 	  Autor autor = modelMapper.map(userService.search(username), Autor.class);
 	    if (autor == null) {
 	        return ResponseEntity.notFound().build();
