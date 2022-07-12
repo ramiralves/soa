@@ -1,7 +1,5 @@
 package br.com.ufrj.engsoft.soa.restful.autor.service;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -12,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.ufrj.engsoft.soa.restful.autor.exception.CustomException;
 import br.com.ufrj.engsoft.soa.restful.autor.model.dto.Autor;
+import br.com.ufrj.engsoft.soa.restful.autor.model.dto.Endereco;
 import br.com.ufrj.engsoft.soa.restful.autor.repository.AutorRepository;
 import br.com.ufrj.engsoft.soa.restful.autor.repository.UserRepository;
 import br.com.ufrj.engsoft.soa.restful.autor.security.JwtTokenProvider;
@@ -25,7 +24,8 @@ public class UserService {
   @Autowired
   private  UserRepository userRepository;
   @Autowired
-  private  AutorRepository autorRepository;  
+  private  AutorRepository autorRepository;
+  
   @Autowired
   private  PasswordEncoder passwordEncoder;
   @Autowired
@@ -59,21 +59,14 @@ public class UserService {
 	      throw new CustomException("Username is already in use", HttpStatus.UNPROCESSABLE_ENTITY);
 	    }
    }  
-
-  public Autor search(String username) {
-	  Autor autor = autorRepository.findByNome(username);
+  
+  public Autor search(String nome) {
+	  Autor autor = autorRepository.findByNome(nome);	  
 	  if (autor == null) {
 		  throw new CustomException("The user doesn't exist", HttpStatus.NOT_FOUND);
 	  }
+	  Endereco endereco = autor.getEndereco();
 	  return autor;
   }
-
-  public AppUser whoami(HttpServletRequest req) {
-    return userRepository.findByUsername(jwtTokenProvider.getUsername(jwtTokenProvider.resolveToken(req)));
-  }
-
-  public String refresh(String username) {
-    return jwtTokenProvider.createToken(username, userRepository.findByUsername(username).getAppUserRoles());
-  }
-
+  
 }

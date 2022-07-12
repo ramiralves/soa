@@ -18,17 +18,18 @@ public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Long 	id;	
+    private Integer	id;	
 	private int 	cep;
 	private String 	logradouro;
 	private int 	numero;
 	private String 	complemento;
 	
+	//@MapsId	
     @OneToOne(fetch = FetchType.EAGER )
-    @JoinColumn(name = "autor_id", insertable = true)
+    @JoinColumn(name = "autor_id")
     private Autor autor;
     
-    @OneToOne(mappedBy = "endereco", cascade = {CascadeType.PERSIST}, fetch = FetchType.EAGER , optional = false)
+    @OneToOne(mappedBy = "endereco", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER , optional = false)
     private Pais pais;
 
     @OneToOne(mappedBy = "endereco", cascade = CascadeType.ALL, fetch = FetchType.EAGER , optional = false)    
@@ -37,11 +38,11 @@ public class Endereco {
     @OneToOne(mappedBy = "endereco", cascade = CascadeType.ALL, fetch = FetchType.EAGER , optional = false)    
     private Estado estado;
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
