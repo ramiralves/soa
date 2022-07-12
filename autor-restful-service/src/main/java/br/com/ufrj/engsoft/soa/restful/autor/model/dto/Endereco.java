@@ -7,7 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -23,10 +23,9 @@ public class Endereco {
 	private String 	logradouro;
 	private int 	numero;
 	private String 	complemento;
-	
-	//@MapsId	
-    @OneToOne(fetch = FetchType.EAGER )
-    @JoinColumn(name = "autor_id")
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @MapsId
     private Autor autor;
     
     @OneToOne(mappedBy = "endereco", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER , optional = false)

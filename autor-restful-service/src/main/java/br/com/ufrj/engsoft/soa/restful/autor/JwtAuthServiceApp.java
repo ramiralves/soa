@@ -40,7 +40,7 @@ public class JwtAuthServiceApp implements CommandLineRunner {
 	public ModelMapper modelMapper() {
 		return new ModelMapper();
 	}
-
+ 
 	@Bean
 	public RestTemplate getRestTemplate() {
 		return new RestTemplate();

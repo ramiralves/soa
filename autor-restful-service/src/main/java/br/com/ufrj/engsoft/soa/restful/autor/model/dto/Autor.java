@@ -11,15 +11,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
-import lombok.NoArgsConstructor;
-
 @Entity
 @Table(name = "autor")
-@NoArgsConstructor
 public class Autor {
 
   @Id
@@ -39,9 +35,9 @@ public class Autor {
   @Column(unique = true, nullable = false)
   private Date data_nascimento;
 
-  @PrimaryKeyJoinColumn
-  @OneToOne(mappedBy = "autor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)  
-  private Endereco endereco;
+  @OneToOne(mappedBy = "autor", cascade = CascadeType.ALL,
+          fetch = FetchType.EAGER, optional = false)
+  private Endereco endereco = new Endereco();
 
 public Integer getId() {
 	return id;

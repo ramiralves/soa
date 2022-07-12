@@ -21,7 +21,7 @@ public class Pais {
 	private String	sigla;
 	private String	nome;
 	
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "endereco_id")
     private Endereco endereco; 
 
