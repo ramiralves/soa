@@ -39,8 +39,8 @@ public class UserController {
       @ApiResponse(code = 400, message = "{usercontroller.erro400}"), //
       @ApiResponse(code = 422, message = "{usercontroller.erro404}")})
   public String login(//
-      @ApiParam("${usercontroller.username}") @RequestParam String username, //
-      @ApiParam("${usercontroller.password}") @RequestParam String password) {
+      @ApiParam("${usercontroller.admim.username}") @RequestParam String username, //
+      @ApiParam("${usercontroller.admim.password}") @RequestParam String password) {
     return userService.signin(username, password);
   }
   
