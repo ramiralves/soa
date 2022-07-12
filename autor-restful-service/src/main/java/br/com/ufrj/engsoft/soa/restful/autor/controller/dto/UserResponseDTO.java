@@ -4,7 +4,6 @@ import java.util.List;
 
 import br.com.ufrj.engsoft.soa.restful.autor.security.dto.AppUserRole;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
 
 
 public class UserResponseDTO {

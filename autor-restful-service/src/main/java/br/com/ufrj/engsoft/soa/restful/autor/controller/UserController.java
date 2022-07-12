@@ -2,6 +2,7 @@ package br.com.ufrj.engsoft.soa.restful.autor.controller;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,7 +36,7 @@ public class UserController {
   @PostMapping("/signin")
   @ApiOperation(value = "${UserController.signin}")
   @ApiResponses(value = {//
-      @ApiResponse(code = 400, message = "Ocorreu algum erro"), //
+      @ApiResponse(code = 400, message = "Ocorreu algum erro no sistema."), //
       @ApiResponse(code = 422, message = "Usuário e/ou Senha informados estão inválidos.")})
   public String login(//
       @ApiParam("Username") @RequestParam String username, //
@@ -47,12 +48,18 @@ public class UserController {
   @PreAuthorize("hasRole('ROLE_ADMIN')")
   @ApiOperation(value = "${UserController.search}", response = Autor.class, authorizations = { @Authorization(value="apiKey") })
   @ApiResponses(value = {//
-      @ApiResponse(code = 400, message = "Something went wrong"), //
-      @ApiResponse(code = 403, message = "Access denied"), //
-      @ApiResponse(code = 404, message = "The user doesn't exist"), //
-      @ApiResponse(code = 500, message = "Expired or invalid JWT token")})
-  public Autor search(@ApiParam("Username") @PathVariable String username) {
-    return modelMapper.map(userService.search(username), Autor.class);
+	  @ApiResponse(code = 400, message = "Ocorreu algum erro no sistema."), //
+	  @ApiResponse(code = 403, message = "Acesso Negado!"), //
+	  @ApiResponse(code = 404, message = "O usuário inválido."), //
+	  @ApiResponse(code = 500, message = "JWT token expirado ou inválido.")}
+  )  
+  public ResponseEntity<Autor> search(@ApiParam("Username") @PathVariable String username) {
+	  Autor autor = modelMapper.map(userService.search(username), Autor.class);
+	    if (autor == null) {
+	        return ResponseEntity.notFound().build();
+	    } else {
+	        return ResponseEntity.ok(autor);
+	    }
   }
 
 }

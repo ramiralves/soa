@@ -31,7 +31,6 @@ public class JwtAuthServiceApp implements CommandLineRunner {
 	@Autowired
 	private UserService userService;
 
-
 	public static void main(String[] args) {
 		SpringApplication.run(JwtAuthServiceApp.class, args);
 	}
@@ -47,15 +46,15 @@ public class JwtAuthServiceApp implements CommandLineRunner {
 	}
 
 	@Override
-	public void run(String... params) throws Exception {
-		
-		AppUser user = new AppUser(); 
-		
+	public void run(String... params) throws Exception {		
+		AppUser user = new AppUser();		
 		user.setAppUserRoles(new
 		ArrayList<AppUserRole>(Arrays.asList(AppUserRole.ROLE_ADMIN)));
-		user.setUsername("admin"); user.setPassword("admin"); //usuario autenticação
+		//usuario para autenticação
+		user.setUsername("admin"); 
+		user.setPassword("admin"); 
 		userService.signup(user);
-					
 	}
+
  
 }

@@ -7,35 +7,39 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.MapsId;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "endereco")
 public class Endereco {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
     private Integer	id;	
 	private int 	cep;
 	private String 	logradouro;
 	private int 	numero;
 	private String 	complemento;
-
-    @OneToOne(fetch = FetchType.EAGER)
-    @MapsId
+	
+	@JsonIgnore
+    @ManyToOne
+    @JoinColumn(name="autor_id", nullable=false)	
     private Autor autor;
     
-    @OneToOne(mappedBy = "endereco", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER , optional = false)
-    private Pais pais;
+    @OneToOne(mappedBy="endereco",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Pais pais = new Pais();
 
-    @OneToOne(mappedBy = "endereco", cascade = CascadeType.ALL, fetch = FetchType.EAGER , optional = false)    
-    private Cidade cidade;
+    @OneToOne(mappedBy="endereco",fetch = FetchType.EAGER, cascade = CascadeType.ALL)    
+    private Cidade cidade = new Cidade();
     
-    @OneToOne(mappedBy = "endereco", cascade = CascadeType.ALL, fetch = FetchType.EAGER , optional = false)    
-    private Estado estado;
+    @OneToOne(mappedBy="endereco",fetch = FetchType.EAGER, cascade = CascadeType.ALL)    
+    private Estado estado = new Estado();
 
 	public Integer getId() {
 		return id;
