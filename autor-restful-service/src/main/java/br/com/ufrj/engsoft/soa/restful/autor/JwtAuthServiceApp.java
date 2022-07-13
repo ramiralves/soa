@@ -31,8 +31,7 @@ import lombok.RequiredArgsConstructor;
 @ComponentScan("br.com.ufrj.engsoft.soa.restful.autor")
 @EnableJpaRepositories("br.com.ufrj.engsoft.soa.restful.autor")
 @EntityScan(basePackages = {"br.com.ufrj.engsoft.soa.restful.autor"})
-@OpenAPIDefinition(info = @Info(title = "Employees API", version = "2.0", description = "Employees Information"))
-//@SecurityScheme(name = "${{springdoc.security.requirement}}", scheme = "basic", type = SecuritySchemeType.HTTP, in = SecuritySchemeIn.HEADER)
+@OpenAPIDefinition(info = @Info(title = "${springdoc.swaggerui.title}", version = "1.0", description = "${springdoc.swaggerui.description}"))
 @SecurityScheme(name = "admin", scheme = "basic", type = SecuritySchemeType.HTTP, in = SecuritySchemeIn.HEADER)
 public class JwtAuthServiceApp implements CommandLineRunner {
 
