@@ -35,7 +35,6 @@ public class AutenticacaoTest {
 		if(!StringUtils.isEmpty(response.getBody())) {
 			retorno = true;
 			System.out.println(String.format("JWT Token: [%s]", response.getBody()));
-				
 		}		
 		assertTrue(retorno);
 		
