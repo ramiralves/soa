@@ -19,10 +19,7 @@ import br.com.ufrj.engsoft.soa.restful.autor.security.dto.AppUser;
 import br.com.ufrj.engsoft.soa.restful.autor.security.dto.AppUserRole;
 import br.com.ufrj.engsoft.soa.restful.autor.service.UserService;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
-import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
-import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.info.Info;
-import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import lombok.RequiredArgsConstructor;
 
 @SpringBootApplication
@@ -32,7 +29,6 @@ import lombok.RequiredArgsConstructor;
 @EnableJpaRepositories("br.com.ufrj.engsoft.soa.restful.autor")
 @EntityScan(basePackages = {"br.com.ufrj.engsoft.soa.restful.autor"})
 @OpenAPIDefinition(info = @Info(title = "${springdoc.swaggerui.title}", version = "1.0", description = "${springdoc.swaggerui.description}"))
-@SecurityScheme(name = "admin", scheme = "basic", type = SecuritySchemeType.HTTP, in = SecuritySchemeIn.HEADER)
 public class JwtAuthServiceApp implements CommandLineRunner {
 
 	@Autowired
