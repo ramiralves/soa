@@ -12,6 +12,14 @@
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
+<!--
+	# Java 11
+	# Spring Boot 2.5.4
+	# Spring Security
+	# JWT
+	# Database H2
+	# OpenAPI 1.2.32 
+ -->
 	<name>autor-restful-service</name>
 
 	<properties>
